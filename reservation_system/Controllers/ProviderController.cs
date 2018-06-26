@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using reservation_system.Models;
@@ -19,8 +20,15 @@ namespace reservation_system.Controllers
         {
             return Ok();
         }
+        
+        [HttpGet("{id}")]
+        public IActionResult getProvider(int id)
+        {
+            var provider = dbContext.Providers.Include(e => e.Tags).Where(e => e.Id == id); //.Find(id).;
+            return new JsonResult(provider);
+        }
 
-        [HttpGet("{id}/rsvs")]
+        [HttpGet("{id}/reserve")]
         public IActionResult getReservations(int id)
         {
             return new JsonResult(true);
