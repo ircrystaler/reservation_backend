@@ -37,3 +37,5 @@ doc/
 
 # Log Files
 *.log
+
+.idea/
