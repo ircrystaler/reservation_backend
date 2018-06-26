@@ -9,9 +9,10 @@ namespace reservation_system.Models
         public DbSet<User> Users {get;set;}
         public ApiContext(DbContextOptions<ApiContext> o) : base(o) {}
 
-        public void onModelCreating(ModelBuilder modelBuilder)
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Provider>(entity => {
+                entity.ToTable("providers");
                 entity.HasKey(e => e.Id).HasName("id");
                 entity.Property(e => e.FirstName).HasColumnName("first_name");
                 entity.Property(e => e.FamilyName).HasColumnName("family_name");
@@ -20,6 +21,7 @@ namespace reservation_system.Models
             });
 
             modelBuilder.Entity<User>(entity => {
+                entity.ToTable("users");
                 entity.HasKey(e => e.Id).HasName("id");
                 entity.Property(e => e.FirstName).HasColumnName("first_name");
                 entity.Property(e => e.FamilyName).HasColumnName("family_name");
