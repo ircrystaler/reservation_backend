@@ -6,7 +6,7 @@ CREATE TABLE Providers(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     name NVARCHAR(100),
     criteria NVARCHAR(100),
-    discription NVARCHAR(MAX),
+    discription NVARCHAR(2000),
     email VARCHAR(100),
     password VARCHAR(100)
 );
@@ -21,7 +21,8 @@ CREATE TABLE Users(
 CREATE TABLE Tag(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     name NVARCHAR(100),
-    provider_id INTEGER FOREIGN KEY REFERENCES Providers(id)
+    provider_id INTEGER,
+    FOREIGN KEY(provider_id) REFERENCES Providers(id)
 );
 
 CREATE TABLE Reservations(
