@@ -14,8 +14,7 @@ namespace reservation_system.Models
             modelBuilder.Entity<Provider>(entity => {
                 entity.ToTable("providers");
                 entity.HasKey(e => e.Id).HasName("id");
-                entity.Property(e => e.FirstName).HasColumnName("first_name");
-                entity.Property(e => e.FamilyName).HasColumnName("family_name");
+                entity.Property(e => e.Name).HasColumnName("name");
                 entity.Property(e => e.Email).HasColumnName("email");
                 entity.Property(e => e.Password).HasColumnName("password");
             });
@@ -23,13 +22,10 @@ namespace reservation_system.Models
             modelBuilder.Entity<User>(entity => {
                 entity.ToTable("users");
                 entity.HasKey(e => e.Id).HasName("id");
-                entity.Property(e => e.FirstName).HasColumnName("first_name");
-                entity.Property(e => e.FamilyName).HasColumnName("family_name");
+                entity.Property(e => e.Name).HasColumnName("name");
                 entity.Property(e => e.Email).HasColumnName("email");
                 entity.Property(e => e.Password).HasColumnName("password");
             });
-
-            
         }
     }
 }
