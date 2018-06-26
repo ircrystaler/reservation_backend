@@ -19,6 +19,8 @@ namespace reservation_system.Models
                 entity.Property(e => e.Criteria).HasColumnName("criteria");
                 entity.Property(e => e.Discription).HasColumnName("discription");
                 entity.Property(e => e.Password).HasColumnName("password");
+                entity.HasMany(e => e.Tags);
+                entity.HasMany(e => e.Reservations);
             });
 
             modelBuilder.Entity<User>(entity => {
@@ -27,6 +29,23 @@ namespace reservation_system.Models
                 entity.Property(e => e.Name).HasColumnName("name");
                 entity.Property(e => e.Email).HasColumnName("email");
                 entity.Property(e => e.Password).HasColumnName("password");
+                entity.HasMany(e => e.Reservations);
+            });
+            
+            modelBuilder.Entity<Tag>(entity => {
+                entity.ToTable("tag");
+                entity.HasKey(e => e.Id).HasName("id");
+                entity.Property(e => e.Name).HasColumnName("name");
+                entity.Property(e => e.ProviderId).HasColumnName("provider_id");
+            });
+            
+            modelBuilder.Entity<Reservation>(entity => {
+                entity.ToTable("Reservations");
+                entity.HasKey(e => e.Id).HasName("id");
+                entity.Property(e => e.StartTime).HasColumnName("start_time");
+                entity.Property(e => e.Duration).HasColumnName("duration");
+                entity.Property(e => e.ProviderId).HasColumnName("provider_id");
+                entity.Property(e => e.UserId).HasColumnName("user_id");
             });
         }
     }

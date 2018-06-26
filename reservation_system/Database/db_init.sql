@@ -1,6 +1,7 @@
 DROP TABLE IF EXISTS Providers;
 DROP TABLE IF EXISTS Users;
 DROP TABLE IF EXISTS Reservations;
+DROP TABLE IF EXISTS Tag;
 
 CREATE TABLE Providers(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -26,34 +27,42 @@ CREATE TABLE Tag(
 );
 
 CREATE TABLE Reservations(
-    id INTEGER PRIMARY KEY AUTOINCREMENT
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    start_time DATETIME,
+    duration DATETIME,
+    
+    provider_id INTEGER,
+    user_id INTEGER,
+    
+    FOREIGN KEY(provider_id) REFERENCES Providers(id),
+    FOREIGN KEY(user_id) REFERENCES Users(id)
 );
 
 insert into Providers(name,criteria,discription,email,password)
-values ('provider1', 'This is my criteria', 'this is a discription', 'my@email.com', '123456');
+values ('ارائه دهنده ۱', 'این یک کرایتریا است.', 'این یک توضیح در باره ارائه دهنده است.....', 'my@email.com', '123456');
 
 insert into Providers(name,criteria,discription,email,password)
-values ('provider2', 'This is my criteria', 'this is a discription', 'my@email.com', '123456');
+values ('ارائه دهنده ۱', 'این یک کرایتریا است.', 'این یک توضیح در باره ارائه دهنده است.....', 'my@email.com', '123456');
 
 insert into Providers(name,criteria,discription,email,password)
-values ('provider3', 'This is my criteria', 'this is a discription', 'my@email.com', '123456');
+values ('ارائه دهنده ۱', 'این یک کرایتریا است.', 'این یک توضیح در باره ارائه دهنده است.....', 'my@email.com', '123456');
 
 insert into Providers(name,criteria,discription,email,password)
-values ('provider4', 'This is my criteria', 'this is a discription', 'my@email.com', '123456');
+values ('ارائه دهنده ۱', 'این یک کرایتریا است.', 'این یک توضیح در باره ارائه دهنده است.....', 'my@email.com', '123456');
 
 insert into Providers(name,criteria,discription,email,password)
-values ('provider5', 'This is my criteria', 'this is a discription', 'my@email.com', '123456');
+values ('ارائه دهنده ۱', 'این یک کرایتریا است.', 'این یک توضیح در باره ارائه دهنده است.....', 'my@email.com', '123456');
 
 insert into Users(name,email,password)
-values ('user1', 'my@email.com', '123456');
+values ('کاربر ۱', 'my@email.com', '123456');
 insert into Users(name,email,password)
-values ('user2', 'my@email.com', '123456');
+values ('کاربر ۲', 'my@email.com', '123456');
 insert into Users(name,email,password)
-values ('user3', 'my@email.com', '123456');
+values ('کاربر ۳', 'my@email.com', '123456');
 insert into Users(name,email,password)
-values ('user4', 'my@email.com', '123456');
+values ('کاربر ۴', 'my@email.com', '123456');
 insert into Users(name,email,password)
-values ('user5', 'my@email.com', '123456');
+values ('کاربر ۵', 'my@email.com', '123456');
 
 insert into Tag(name,provider_id) values('مغر و اعصاب', 1);
 insert into Tag(name,provider_id) values('پزشک', 1);
@@ -71,4 +80,14 @@ insert into Tag(name,provider_id) values('دندانپزشک', 1);
 insert into Tag(name,provider_id) values('اورولوژیست', 2);
 insert into Tag(name,provider_id) values('قلب و عروق', 3);
 
+insert into Reservations(start_time,duration,provider_id,user_id)
+values ("2018-07-07 11:30:00", "0000-00-00 1:30:00", 1, 1);
+insert into Reservations(start_time,duration,provider_id,user_id)
+values ("2018-07-07 13:00:00", "0000-00-00 1:30:00", 1, null);
+insert into Reservations(start_time,duration,provider_id,user_id)
+values ("2018-07-07 15:00:00", "0000-00-00 1:30:00", 1, null);
+insert into Reservations(start_time,duration,provider_id,user_id)
+values ("2018-07-07 16:30:00", "0000-00-00 1:30:00", 1, 2);
+insert into Reservations(start_time,duration,provider_id,user_id)
+values ("2018-07-07 19:00:00", "0000-00-00 1:30:00", 1, 1);
 
