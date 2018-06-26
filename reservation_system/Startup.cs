@@ -14,7 +14,7 @@ namespace reservation_system
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ApiContext>(o => o.UseSqlite("Data Source=./Database/Database.db"));
-            services.AddMvc();
+            services.AddMvc().AddJsonOptions(o => o.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

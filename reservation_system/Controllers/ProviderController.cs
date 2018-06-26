@@ -24,7 +24,14 @@ namespace reservation_system.Controllers
         [HttpGet("{id}")]
         public IActionResult getProvider(int id)
         {
-            var provider = dbContext.Providers.Include(e => e.Tags).Where(e => e.Id == id); //.Find(id).;
+            var provider = dbContext.Providers
+                .Include(e => e.Tags).Where(e => e.Id == id)
+                .Include(e => e.Reservations).Where(e => e.Id == id); //.Find(id).;
+                
+            foreach (var res in provider.First().Reservations)
+            {
+                res.StartTime = DateTime.Parse(res.StartTime).ToString();
+            }
             return new JsonResult(provider);
         }
 

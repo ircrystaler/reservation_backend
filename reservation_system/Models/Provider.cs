@@ -11,8 +11,7 @@ namespace reservation_system.Models
         public string Discription { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
-        public HashSet<Tag> Tags { get; set; }
-        public HashSet<Reservation> Reservations { get; set; }
-
+        public ICollection<Tag> Tags { get; set; }
+        public ICollection<Reservation> Reservations { get; set; }
     }
 }
