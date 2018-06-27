@@ -15,6 +15,7 @@ namespace reservation_system
         {
             services.AddDbContext<ApiContext>(o => o.UseSqlite("Data Source=./Database/Database.db"));
             services.AddMvc().AddJsonOptions(o => o.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+            services.AddCors();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -24,6 +25,7 @@ namespace reservation_system
             {
                 app.UseDeveloperExceptionPage();
             }
+            app.UseCors(builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader().AllowCredentials());
             app.UseMvc();
             app.UseWelcomePage();
             app.Run(async (context) =>
