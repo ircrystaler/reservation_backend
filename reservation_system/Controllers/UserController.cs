@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace reservation_system.Controllers
 {
@@ -19,8 +20,9 @@ namespace reservation_system.Controllers
         [HttpGet("{id}")]
         public IActionResult getUser(int id)
         {
-            var a = dbContext.Providers.Count();
-            return new JsonResult(id + " " + a);
+            var user = dbContext.Users
+                .Include(e => e.Reservations).Where(e => e.Id == id);
+            return new JsonResult(user);
         }
 
         [HttpGet("{id}/getrsvs")]
