@@ -43,8 +43,9 @@ namespace reservation_system.Models
             modelBuilder.Entity<Reservation>(entity => {
                 entity.ToTable("Reservations");
                 entity.HasKey(e => e.Id).HasName("id");
-                entity.Property(e => e.StartTime).HasColumnName("start_time");
-                entity.Property(e => e.Duration).HasColumnName("duration");
+                entity.Property(e => e.Day).HasColumnName("day");
+                entity.Property(e => e.From).HasColumnName("from_");
+                entity.Property(e => e.To).HasColumnName("to_");
                 entity.Property(e => e.UserId).HasColumnName("user_id");
             });
         }

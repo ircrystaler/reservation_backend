@@ -28,8 +28,9 @@ CREATE TABLE Tag(
 
 CREATE TABLE Reservations(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    start_time DATETIME,
-    duration DATETIME,
+    day NVARCHAR(20),
+    from_ INTEGER,
+    to_ INTEGER,
     
     provider_id INTEGER,
     user_id INTEGER,
@@ -80,14 +81,14 @@ insert into Tag(name,provider_id) values('دندانپزشک', 1);
 insert into Tag(name,provider_id) values('اورولوژیست', 2);
 insert into Tag(name,provider_id) values('قلب و عروق', 3);
 
-insert into Reservations(start_time,duration,provider_id,user_id)
-values ("2018-07-07 11:30:00", "0000-00-00 1:30:00", 1, 1);
-insert into Reservations(start_time,duration,provider_id,user_id)
-values ("2018-07-07 13:00:00", "0000-00-00 1:30:00", 1, null);
-insert into Reservations(start_time,duration,provider_id,user_id)
-values ("2018-07-07 15:00:00", "0000-00-00 1:30:00", 1, null);
-insert into Reservations(start_time,duration,provider_id,user_id)
-values ("2018-07-07 16:30:00", "0000-00-00 1:30:00", 1, 2);
-insert into Reservations(start_time,duration,provider_id,user_id)
-values ("2018-07-07 19:00:00", "0000-00-00 1:30:00", 1, 1);
+insert into Reservations(day,from_,to_,provider_id,user_id)
+values ("شنبه",11, 12 , 1, 1);
+insert into Reservations(day,from_,to_,provider_id,user_id)
+values ("شنبه",13, 15 , 1, null);
+insert into Reservations(day,from_,to_,provider_id,user_id)
+values ("شنبه",15, 17 , 1, null);
+insert into Reservations(day,from_,to_,provider_id,user_id)
+values ("یکشنبه",10, 12 , 1, 2);
+insert into Reservations(day,from_,to_,provider_id,user_id)
+values ("یکشنبه",13, 15 , 1, 1);
 
